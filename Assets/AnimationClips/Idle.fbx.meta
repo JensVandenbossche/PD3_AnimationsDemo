@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 753e6d0d943f12e438e42482c9099037
+guid: 1e5c6da466941c64895773b9c6971035
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -143,7 +143,7 @@ ModelImporter:
     9500000: //RootNode
   externalObjects: {}
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -197,22 +197,22 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
+    optimizeMeshForGPU: 0
     keepQuads: 0
-    weldVertices: 1
+    weldVertices: 0
     preserveHierarchy: 0
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -224,8 +224,8 @@ ModelImporter:
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 0
-    tangentImportMode: 3
+    normalImportMode: 2
+    tangentImportMode: 2
     normalCalculationMode: 4
   importAnimation: 1
   copyAvatar: 1
@@ -648,40 +648,24 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: mixamorig:LeftEye
-      humanName: LeftEye
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: mixamorig:RightEye
-      humanName: RightEye
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
     skeleton:
-    - name: ybot (1)(Clone)
+    - name: YBot(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Alpha_Joints
-      parentName: ybot (1)(Clone)
+      parentName: YBot(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Alpha_Surface
-      parentName: ybot (1)(Clone)
+      parentName: YBot(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Hips
-      parentName: ybot (1)(Clone)
+      parentName: YBot(Clone)
       position: {x: 0.00000006757011, y: 0.9979194, z: 0.000000484474}
       rotation: {x: 1.3930912e-15, y: 0.00000001376344, z: -0.0000004417766, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -1039,12 +1023,13 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    rootMotionBoneName: mixamorig:Hips
+    rootMotionBoneRotation: {x: 1.3930912e-15, y: 0.00000001376344, z: -0.0000004417766,
+      w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 068c4f6e0ea71c54fa09c61273f4b954,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: f055c0f3283adf84d901be0a2a89ac02,
     type: 3}
   animationType: 3
   humanoidOversampling: 1

@@ -37,6 +37,8 @@ public class CharacterControllerBehaviour : MonoBehaviour
     private bool _jump;
 
     private int _verticalVelocityAnimationParameter = Animator.StringToHash("VerticalVelocity");
+    private int _horizontalVelocityAnimationParameter = Animator.StringToHash("HorizontalVelocity");
+    private int _jumpRollAnimationParameter = Animator.StringToHash("JumpRoll");
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
@@ -62,6 +64,12 @@ public class CharacterControllerBehaviour : MonoBehaviour
         Vector3 localVelocity = gameObject.transform.InverseTransformVector(velocityXZ);
 
         _animator.SetFloat(_verticalVelocityAnimationParameter, localVelocity.z);
+        _animator.SetFloat(_horizontalVelocityAnimationParameter, localVelocity.x);
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            _animator.SetTrigger(_jumpRollAnimationParameter);
+        }        
     }
     
     void FixedUpdate()
