@@ -58,9 +58,10 @@ public class CharacterControllerBehaviour : MonoBehaviour
             _jump = true;
         }
 
-        float locomotionVelocity = Vector3.Scale(_velocity, new Vector3(1, 0, 1)).magnitude;
+        Vector3 velocityXZ = Vector3.Scale(_velocity, new Vector3(1, 0, 1));
+        Vector3 localVelocity = gameObject.transform.InverseTransformVector(velocityXZ);
 
-        _animator.SetFloat(_verticalVelocityAnimationParameter, locomotionVelocity);
+        _animator.SetFloat(_verticalVelocityAnimationParameter, localVelocity.z);
     }
     
     void FixedUpdate()
