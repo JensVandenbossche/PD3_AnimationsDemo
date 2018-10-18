@@ -24,6 +24,12 @@ public class CharacterControllerBehaviour : MonoBehaviour
     [SerializeField]
     private float _jumpHeight = 1; // [m]
 
+    [SerializeField]
+    private Transform _aimHandle;
+
+    [SerializeField]
+    private Transform _aimTarget;
+
     [Header("Dependencies")]
     [SerializeField, Tooltip("What should determine the absolute forward when a player presses forward.")]
     private Transform _absoluteForward;
@@ -34,11 +40,15 @@ public class CharacterControllerBehaviour : MonoBehaviour
     private Vector3 _velocity = Vector3.zero;
 
     private Vector3 _movement;
+    private Vector3 _aim;
     private bool _jump;
+    private bool _aiming;
 
     private int _verticalVelocityAnimationParameter = Animator.StringToHash("VerticalVelocity");
     private int _horizontalVelocityAnimationParameter = Animator.StringToHash("HorizontalVelocity");
     private int _jumpRollAnimationParameter = Animator.StringToHash("JumpRoll");
+    private int _aimingAnimationParameter = Animator.StringToHash("Aiming");
+
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
@@ -49,15 +59,20 @@ public class CharacterControllerBehaviour : MonoBehaviour
         Assert.IsNotNull(_animator, "Dependency Error: This component needs an Animator to work.");
         Assert.IsNotNull(_absoluteForward, "Dependency Error: Set the Absolute Forward field.");
 #endif
+
+        _animator.GetBehaviour<AimPistolBehaviour>().AimTarget = _aimTarget;
     }
 
     void Update()
-    {
-        _movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        
+    {        
         if (Input.GetButtonDown("Jump"))
         {
             _jump = true;
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            _aiming = !_aiming;
         }
 
         Vector3 velocityXZ = Vector3.Scale(_velocity, new Vector3(1, 0, 1));
@@ -65,12 +80,17 @@ public class CharacterControllerBehaviour : MonoBehaviour
 
         _animator.SetFloat(_verticalVelocityAnimationParameter, localVelocity.z);
         _animator.SetFloat(_horizontalVelocityAnimationParameter, localVelocity.x);
+        _animator.SetBool(_aimingAnimationParameter, _aiming);
 
         //jumpRoll
         if (Input.GetKeyDown(KeyCode.V))
         {
             _animator.SetTrigger(_jumpRollAnimationParameter);
-        }        
+        }
+
+        _movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+        _aim = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2"));
     }
     
     void FixedUpdate()
@@ -84,6 +104,17 @@ public class CharacterControllerBehaviour : MonoBehaviour
         ApplyJump();
 
         LimitMaximumRunningSpeed();
+
+        if (_aim.magnitude >0.5f)
+        {
+            //Vector3 relativeAim = RelativeDirection(_aim);
+            //_aimHandle.rotation = Quaternion.LookRotation(relativeAim);
+
+            _aimHandle.localRotation = Quaternion.Euler(
+                _aimHandle.localRotation.eulerAngles.x,
+                Mathf.Clamp(_aimHandle.localRotation.eulerAngles.y + 90, 0, 180) - 90,
+                _aimHandle.localRotation.eulerAngles.z);
+        }
 
         _characterController.Move(_velocity * Time.deltaTime);
     }

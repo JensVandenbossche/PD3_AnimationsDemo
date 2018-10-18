@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AimPistolBehaviour : StateMachineBehaviour {
 
+    public Transform AimTarget;
+
     // OnStateEnter is called before OnStateEnter is called on any state inside this state machine
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
     //
@@ -27,7 +29,11 @@ public class AimPistolBehaviour : StateMachineBehaviour {
     // OnStateIK is called before OnStateIK is called on any state inside this state machine
     override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        if (stateInfo.IsName("Pistol"))
+        {
+            animator.SetIKPosition(AvatarIKGoal.LeftHand, AimTarget.position);
+            animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
+        }        
     }
 
     // OnStateMachineEnter is called when entering a statemachine via its Entry Node
