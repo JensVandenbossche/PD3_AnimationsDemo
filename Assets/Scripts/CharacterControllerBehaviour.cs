@@ -66,6 +66,7 @@ public class CharacterControllerBehaviour : MonoBehaviour
         _animator.SetFloat(_verticalVelocityAnimationParameter, localVelocity.z);
         _animator.SetFloat(_horizontalVelocityAnimationParameter, localVelocity.x);
 
+        //jumpRoll
         if (Input.GetKeyDown(KeyCode.V))
         {
             _animator.SetTrigger(_jumpRollAnimationParameter);
